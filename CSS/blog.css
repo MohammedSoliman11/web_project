@@ -1,0 +1,91 @@
+*{
+    -webkit-box-sizing: border-box;
+    box-sizing:border-box;
+}
+body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins'
+}
+
+.type{
+    height:90px;
+    background:#f6f6f6;
+    line-height:90px;
+}
+.type h3{margin:0;}
+.type .left{text-align:left;}
+.type .right{text-align:right;color:#777;font-size:15px;}
+.type .right a{
+    text-decoration: none;
+    color:#000;
+    transition:500ms;
+}
+.type .right a:hover{
+    color:#0cc3ce;
+}
+.type .right a:last-of-type{
+    color:#0cc3ce;
+}
+.blog{overflow:hidden}
+.blog .img{
+    width:33.33333%;
+    float:left;
+    height:430px;
+    padding:60px;
+    position: relative;
+}
+.blog .img p{
+    color:#777;
+    font-size:13px;
+    line-height:1.8;
+}
+.blog .img span{
+    color:#0cc3ce;
+    font-size:13px;
+}
+.blog .img a{
+    text-decoration: none;
+    color:#000;
+    font-weight:bold;
+    font-size:16px;
+    display:block;
+    margin-top:25px;
+}
+.blog .bg1{
+    background:url('../IMAGES/portifolio/10.png');
+    background-size:cover; 
+}
+.blog .bg2{
+    background:url('../IMAGES/portifolio/3.png');
+    background-size:cover; 
+}
+.blog .bg3{
+    background:url('../IMAGES/portifolio/7.png');
+    background-size:cover; 
+}
+.blog .bg4{
+    background:url('../IMAGES/portifolio/11.png');
+    background-size:cover; 
+}
+.blog .img .overlay
+{
+    position: absolute;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.7);
+    width:100%;
+    height:100%;
+    padding:80px 30px;
+    color:#fff !important;
+}
+.blog .img .overlay p{
+    color:#fff !important
+}
+.blog .img h3{font-size:22px;}
+
+.blog .img .overlay span.name{
+    color:#fff;
+}
+
+.blog .bg-diff{background:#f4f4f4;}

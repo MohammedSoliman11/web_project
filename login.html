@@ -1,0 +1,40 @@
+<?php
+    $conn = new mysqli("localhost", "root", "");
+
+    $conn->select_db("Suprema");
+
+    $sql = "SELECT * FROM `sign`";
+
+    $email="";
+    $pass="";
+    $check=1;
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        
+        $email = $_POST["email"];
+        $pass = $_POST["password"];
+
+        $res = $conn->query($sql);
+        if($res->num_rows>0)
+        {
+            while ($row = $res->fetch_assoc()) {
+                if (($row['Email']) === $email && ($row['Password']) === $pass) {
+    
+                    $name=$row['User_Name'];
+
+                    echo '<script> alert("HELLO "+'."\"$name\"".')</script>';
+                    $sql="UPDATE sign SET current=0";
+    
+                    $conn->query($sql);
+                    $sql="UPDATE sign SET current=1 where Email='".$email."' AND Password='".$pass."'";
+                    $check=0;
+                    $conn->query($sql);
+                }
+            }
+        }
+        if($check===1)
+        echo '<script> alert("invalid E-mail OR Password")</script>';
+    }
+
+    $conn->close();
+    include('index.php');
+?>

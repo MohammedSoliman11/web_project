@@ -1,0 +1,42 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:'poppins';
+}
+.about-us{
+    height:100vh;
+    background:url('../IMAGES/about.jpg');
+    background-size:cover;
+    background-position:center center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.about-us .overlay{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+}
+
+.about-us .about-container{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:500px;
+    color:#fff;
+}
+.about-us .about-container h2{
+    font-size:50px;
+    margin-bottom:15px;
+}
+.about-us .about-container p{
+    font-size:14px;
+    line-height:1.8;
+}
+.about-us .about-container span{margin:20px 0;display:block;}
+.about-us .about-container .about-icons i{padding-right:15px; font-size:20px;transition:500ms;cursor: pointer}
+.about-us .about-container .about-icons i:hover{color:#0cc3ce;}

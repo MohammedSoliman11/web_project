@@ -1,0 +1,92 @@
+<?php 
+    $conn=new mysqli("localhost","root","");
+    
+    $conn->select_db("Suprema");
+    
+    $sql = "SELECT * FROM `sign` WHERE current = 1";
+    $res=$conn->query($sql);
+    $valid=1;
+    $email="";
+    if($row=$res->fetch_assoc())
+    {
+        $email=$row['Email'];
+    }else
+        echo "<script> alert ('error')</script>";
+    
+    $sql = "SELECT * FROM `client`";
+    
+    $ress=$conn->query($sql);
+    $print=0;
+
+
+    $pro=array("Grey Wool Sweater","Tech Wristwatch","Striped Slip-On","Navy Blue Winter Jacket","White x Gold Sneaker",
+    "Skater Black Sneakers","Tote Cream Bag","Jumper Futura","Sweatsuit Grey Heather","White x Black Backpack",
+    "Sneakers Print Leopard","Print Leopard Sandals");
+    
+    $arr=array("Grey Wool Sweater"=>0,"Tech Wristwatch"=>0,"Striped Slip-On"=>0,"Navy Blue Winter Jacket"=>0,"White x Gold Sneaker"=>0,
+                "Skater Black Sneakers"=>0,"Tote Cream Bag"=>0,"Jumper Futura"=>0,"Sweatsuit Grey Heather"=>0,
+            "White x Black Backpack"=>0,"Sneakers Print Leopard"=>0,"Print Leopard Sandals"=>0);
+
+    $pricee=array("Grey Wool Sweater"=>0,"Tech Wristwatch"=>0,"Striped Slip-On"=>0,"Navy Blue Winter Jacket"=>0,"White x Gold Sneaker"=>0,
+            "Skater Black Sneakers"=>0,"Tote Cream Bag"=>0,"Jumper Futura"=>0,"Sweatsuit Grey Heather"=>0,
+        "White x Black Backpack"=>0,"Sneakers Print Leopard"=>0,"Print Leopard Sandals"=>0);
+
+
+    $img=array("Grey Wool Sweater"=>"IMAGES/shop/31.png","Tech Wristwatch"=>"IMAGES/shop/28.png","Striped Slip-On"=>"IMAGES/shop/30.png","Navy Blue Winter Jacket"=>"IMAGES/shop/30.png","White x Gold Sneaker"=>"IMAGES/shop/26.png",
+        "Skater Black Sneakers"=>"IMAGES/shop/24.png","Tote Cream Bag"=>"IMAGES/shop/25.png","Jumper Futura"=>"IMAGES/shop/21.png","Sweatsuit Grey Heather"=>"IMAGES/shop/23.png",
+    "White x Black Backpack"=>"IMAGES/shop/27.png","Sneakers Print Leopard"=>"IMAGES/shop/20.jpg","Print Leopard Sandals"=>"IMAGES/shop/22.png");
+    //print_r($img);
+    $i=0;
+    if($ress->num_rows > 0){
+        while($row = $ress->fetch_assoc())
+        {
+            if($row['Email']===$email)
+            {
+                $arr[$row['Product']]++;
+                if($pricee[$row['Product']]===0)
+                {
+                    $pricee[$row['Product']]=$row['Total_Price'];
+                }
+                $print=1;
+            }
+        }
+    }
+    if($print === 0 )
+    {
+        echo '<span>Your Cart Is Currently Empty</span>';
+    }
+    if($print===1)
+    {
+        echo '<table style="border:1px solid;width:100%;">
+        <tr>
+            <th style="border:1px solid;">Image</th>
+            <th style="border:1px solid;">Product</th>
+            <th style="border:1px solid;">Quantity</th>
+            <th style="border:1px solid;">Total Price</th>
+        </tr>';
+        $sum=0;
+        for($j=0;$j<12;$j++)
+        {
+            if($arr[$pro[$j]]>0)
+            {
+                $str=$pro[$j];
+                //echo "<script> alert ('".$img[$str]."')</script>";
+                echo'
+                    <tr>
+                        <td style="border:1px solid;"><img style="width:50px;height:50px;" src ='.$img[$str].' alt="img"></td>
+                        <td style="border:1px solid;text-align:center;">'.$pro[$j].'</td>
+                        <td style="border:1px solid;text-align:center;">'.$arr[$pro[$j]].'</td>
+                        <td style="border:1px solid;text-align:center;">$'.$pricee[$pro[$j]]*$arr[$pro[$j]].'</td>
+                    </tr>
+                    ';
+                $sum+=$pricee[$pro[$j]]*$arr[$pro[$j]];
+            }
+        }
+        echo '<tr><td colspan="2" style="border:1px solid;text-align:center;"><span style="padding : 10px;">Total Price</span><td colspan="2"><span style="border:1px solid;text-align:center;padding : 10px;"> $'.$sum.'</span></td></tr>';
+        echo '</table>';
+    }
+    
+    echo '<br><a href="shop.php">Return to Shop</a>';
+    $conn->close();
+
+?>

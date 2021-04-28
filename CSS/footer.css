@@ -1,0 +1,76 @@
+.footer
+{
+    padding:65px 0;
+    background:#000;
+    color:#fff;
+}
+.footer i{padding-right:7px;color:#0cc3ce}
+.footer a.footer-logo{
+    margin:0;
+    font-size:35px;
+    letter-spacing:-1px;
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.footer p{
+    font-size:13px;
+    line-height:2;
+}
+.footer p:first-of-type{margin-bottom:30px;}
+.footer h4{margin-top:20px;}
+
+.footer a.date-link{
+    text-decoration:none;
+    display:block;
+    color:#fff;
+    font-size:15px;
+    padding:3px 0;
+    line-height:1.6;
+}
+
+.footer span.date{
+    font-size:13px;
+    color:#0cc3ce;
+    font-weight:bold;
+    display:block;
+    margin-bottom:20px;
+}
+
+.footer a{
+    text-decoration:none;
+    color:#bbb;
+    font-size:15px;
+}
+.footer span{
+    font-size:13px;
+}
+.footer p.twitter-p{
+    line-height:1.6 !important
+}
+.footer p.twitter-p:first-of-type{margin-bottom:15px;}
+.footer p.twitter-p a{
+    font-size:13px !important
+}
+.footer .insta-pics {overflow:hidden;padding:15px 0;border-bottom:2px solid #191919}
+.footer .insta-pics .insta-img{width:25%;float:left;}
+
+.footer .subscribe{overflow:hidden;border-bottom:2px solid #191919;padding:15px 0;}
+.footer .subscribe .text{font-size:13px;}
+.footer .subscribe .text, .footer .subscribe .input{width:50%;float:left;}
+.footer .subscribe .input input{
+    background:transparent;
+    outline:0;
+    padding:10px 5px;
+    width:100%;
+    border:1px solid #fff;
+    color:#fff;
+}
+.footer .subscribe .input ::-webkit-input-placeholder{
+    color:#fff;
+}
+.footer .pay{padding:30px 0;}
+.footer .pay img{
+    width:100%;
+}

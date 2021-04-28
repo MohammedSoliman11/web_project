@@ -1,0 +1,45 @@
+<?php 
+    $conn=new mysqli("localhost","root","");
+    
+    $conn->select_db("Suprema");
+    
+    $sql = "SELECT * FROM `sign` WHERE current = 1";
+    $res=$conn->query($sql);
+    $valid=1;
+    $email="";
+    if($row=$res->fetch_assoc())
+    {
+        $email=$row['Email'];
+    }else
+        echo "<script> alert ('error')</script>";
+    $sql="SELECT * FROM `client` WHERE Email = ?";
+    $stmt=$conn->prepare($sql);
+
+    $stmt->bind_param("s",$email);
+    
+    if($result=$stmt->execute())
+        echo "<script> alert ('error1')</script>";
+
+    $j=0;
+    $i=0;
+    print($result);
+    if($result->num_rows > 0)
+    {
+        if(isset($_POST['order_num']))
+            (int)$i=$_POST['order_num'];
+            
+        while($data=$result->fetch_assoc())
+        {
+            $j++;
+            if($j==$i)
+            {
+                $sql = "DELETE FROM `client` WHERE Email=".$email." AND Product = ".$data['Product'];
+                echo "<script> alert ('".$sql."')</script>";
+                $conn->query("$sql");
+            }
+        }
+    }
+    
+    $conn->close();
+    include 'cart.php';
+?>

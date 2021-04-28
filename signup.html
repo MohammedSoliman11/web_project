@@ -1,0 +1,60 @@
+<?php
+    
+    $conn = new mysqli("localhost", "root", "");
+
+    $conn->select_db("Suprema");
+
+    $name="";
+    $pass="";
+    $email="";
+    $valid=1;
+
+    if (isset($_POST['username1']) && isset($_POST['password1'])&&isset($_POST['email1'])) {
+    
+        $name = $_POST["username1"];
+        $pass = $_POST["password1"];
+        $email= $_POST['email1'];
+
+        //echo '<script> alert("'.$name.$pass.$email.'"); </script>';
+
+        //validate data//
+
+        $sql = "SELECT * FROM sign";
+        $res=$conn->query($sql);
+
+        if($res->num_rows>0)
+        {
+            while ($row = $res->fetch_assoc()) {
+                if ($row['Email'] === $email) {
+                    echo '<script> alert("this email is uesed before")</script>';
+                    $valid=0;
+                    break;
+                }
+            }    
+        }
+        //insert data//
+    
+        if($valid===1){
+            $conn->query("UPDATE sign SET current=0");
+            $sql="INSERT INTO sign(`User_Name`,`Password`,`Email`,`current`) VALUES(?,?,?,?)";
+
+            $stmt=$conn->prepare($sql);
+
+            $current=1;
+            //echo '<script> alert("'.$name.$pass.$email.'"); </script>';
+            $stmt->bind_param("sssi",$name,$pass,$email,$current);
+
+            if($stmt->execute())
+                echo '<script> alert("Welcome "+'."\"$name\"".'); </script>';
+            else
+                echo '<script> alert("ERROR!"); </script>';
+        }
+    }else
+        echo '<script> alert("not good"); </script>';
+    
+    
+        
+    $conn->close();
+    include 'index.php';
+    //header('location:index.php');
+?>
